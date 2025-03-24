@@ -18,7 +18,7 @@ public class App extends Application {
 
     @Override
     public void start(@SuppressWarnings("exports") Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/vista_principal.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/vista_inicioSecion.fxml"));
 
         Scene scene = new Scene(root);// Creamos una ecena
 

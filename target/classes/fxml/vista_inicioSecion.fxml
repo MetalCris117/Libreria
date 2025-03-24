@@ -1,14 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.net.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uacm.libros.Vista_inicioSecionController">
-    <stylesheets>
-        <URL value="@/styles/vista_iniciosecion.css"/>
-    </stylesheets>
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="406.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uacm.libros.Vista_inicioSecionController">
+   <children>
+      <Label fx:id="text_titulo" layoutX="35.0" layoutY="14.0" text="UACM Entre Páginas">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Label>
+      <Label fx:id="txt_subtitulo" alignment="CENTER" layoutX="54.0" layoutY="57.0" prefHeight="35.0" prefWidth="126.0" text="Mi Cuenta">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="92.0" fitWidth="103.0" layoutX="244.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../imagenes/user.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="txt_ask" layoutX="116.0" layoutY="128.0" text="¿Ya tienes cuenta?">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="txt_inv" layoutX="35.0" layoutY="165.0" text="Ingresa tu correo" textFill="#0000008c">
+         <font>
+            <Font name="Arial Bold" size="12.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtF" layoutX="35.0" layoutY="187.0" prefHeight="15.0" prefWidth="182.0" />
+      <Button fx:id="boton" alignment="CENTER" layoutX="224.0" layoutY="187.0" mnemonicParsing="false" prefHeight="0.0" prefWidth="74.0" style="-fx-background-color: black;" text="Acceder" textFill="WHITE" />
+      <Button fx:id="bt_atras" layoutX="35.0" layoutY="328.0" mnemonicParsing="false" style="-fx-background-color: transparent;" stylesheets="@../styles/vista_iniciosecion.css" text="&lt; Atrás" textAlignment="CENTER" underline="true" />
+   </children>
 </AnchorPane>
