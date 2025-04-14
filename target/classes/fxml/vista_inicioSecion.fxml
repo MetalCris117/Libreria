@@ -20,7 +20,7 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <ImageView fitHeight="92.0" fitWidth="103.0" layoutX="244.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="img" fitHeight="92.0" fitWidth="103.0" layoutX="244.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../imagenes/user.png" />
          </image>
@@ -30,13 +30,19 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <Label fx:id="txt_inv" layoutX="35.0" layoutY="165.0" text="Ingresa tu correo" textFill="#0000008c">
+      <Label fx:id="txt_corr" layoutX="35.0" layoutY="165.0" text="Ingresa tu correo:" textFill="#0000008c">
          <font>
             <Font name="Arial Bold" size="12.0" />
          </font>
       </Label>
       <TextField fx:id="txtF" layoutX="35.0" layoutY="187.0" prefHeight="15.0" prefWidth="182.0" />
-      <Button fx:id="boton" alignment="CENTER" layoutX="224.0" layoutY="187.0" mnemonicParsing="false" prefHeight="0.0" prefWidth="74.0" style="-fx-background-color: black;" text="Acceder" textFill="WHITE" />
-      <Button fx:id="bt_atras" layoutX="35.0" layoutY="328.0" mnemonicParsing="false" style="-fx-background-color: transparent;" stylesheets="@../styles/vista_iniciosecion.css" text="&lt; Atrás" textAlignment="CENTER" underline="true" />
+      <Button fx:id="boton" alignment="CENTER" layoutX="233.0" layoutY="216.0" mnemonicParsing="false" prefHeight="0.0" prefWidth="74.0" style="-fx-background-color: black;" text="Acceder" textFill="WHITE" />
+      <Button fx:id="bt_atras" layoutX="35.0" layoutY="328.0" mnemonicParsing="false" onAction="#cerrar" style="-fx-background-color: transparent;" stylesheets="@../styles/vista_iniciosecion.css" text="&lt; Atrás" textAlignment="CENTER" underline="true" />
+      <Label fx:id="txt_contra" layoutX="35.0" layoutY="221.0" text="Ingresa tu contraseña:" textFill="#0000008c">
+         <font>
+            <Font name="Arial Bold" size="12.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtF2" layoutX="35.0" layoutY="245.0" prefHeight="15.0" prefWidth="182.0" />
    </children>
 </AnchorPane>

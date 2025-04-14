@@ -4,10 +4,18 @@
  */
 package uacm.libros;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+//import javax.swing.Action;
+
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.SubScene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -15,6 +23,7 @@ import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.ScrollBar;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -48,6 +57,21 @@ public class Vista_principalController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         button_Buscar.setOnAction(event -> Buscar());
+    }
+
+    @FXML
+    private void abrirInicioSecion(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/vista_inicioSecion.fxml"));
+        Parent root = loader.load();
+
+        Stage stage = new Stage();
+        Scene scene = new Scene(root);
+
+        String css = getClass().getResource("/styles/vista_iniciosecion.css").toExternalForm();
+        scene.getStylesheets().add(css);
+
+        stage.setScene(scene);
+        stage.show();
     }
 
     private void Buscar() {

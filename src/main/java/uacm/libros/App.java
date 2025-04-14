@@ -18,12 +18,21 @@ public class App extends Application {
 
     @Override
     public void start(@SuppressWarnings("exports") Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/vista_inicioSecion.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/vista_principal.fxml"));
 
         Scene scene = new Scene(root);// Creamos una ecena
 
+        //String css = getClass().getResource("/styles/vista_pago.css").toExternalForm();
+        //scene.getStylesheets().add(css); //Esto es para que me encuentre el css
+
         stage.setScene(scene);// Agregamos la ecena al ecenario
         stage.show();// Mostramos el ecenario
+
+        /*
+         * <stylesheets>
+            <URL value="@styles/vista_pago.css"/>    Esto lo quite del fxml porque no me corria
+           </stylesheets>
+         */
     }
 
     @Override
