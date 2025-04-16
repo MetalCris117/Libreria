@@ -1,22 +1,36 @@
 package uacm.libros;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import uacm.conexion.Conection;
 
 public class Vista_registroController {
+
+    @FXML
+    private RadioButton M;
+
+    @FXML
+    private RadioButton H;
 
     @FXML
     private TextField aux2Contra;
@@ -57,10 +71,30 @@ public class Vista_registroController {
     @FXML
     private TextField usuario;
 
+    private char opcionSeleccionada;
+
      /**
      * Initializes the controller class.
      */
     public void initialize() {
+        //Para que solo pueda seleccionar un radio button
+        ToggleGroup group = new ToggleGroup();
+        H.setToggleGroup(group);
+        M.setToggleGroup(group);
+
+        H.setOnAction(e -> {
+            if (H.isSelected()) {
+                opcionSeleccionada = 'H';
+                System.out.println("Seleccionado: " + opcionSeleccionada);
+            }
+        });
+    
+        M.setOnAction(e -> {
+            if (M.isSelected()) {
+                opcionSeleccionada = 'M';
+                System.out.println("Seleccionado: " + opcionSeleccionada);
+            }
+        });
 
         usuario.setTextFormatter(new TextFormatter<>(change -> {
             if (change.getText().contains(" ")) {
@@ -155,6 +189,83 @@ public class Vista_registroController {
         //Cerrar la ventana actual al obtener el botón desde el evento
         Stage ventanaActual = (Stage) ((Button) event.getSource()).getScene().getWindow();
         ventanaActual.close();
+    }
+    //Esta funcion me limpia lo que tiene el textField y el PasswordField
+    private void limpiaDatos () {
+        nombre.clear();
+        contra.clear();
+        confirm.clear();
+        usuario.clear();
+    }
+    //Esta funcion me valida el correo
+    private boolean validCorreo (String email) {
+        String corr = "^[a-zA-Z0-9_+&-]+(?:\\.[a-zA-Z0-9_+&-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+        return email.matches(corr);
+    }
+    //Aquí registro el usuario
+    private boolean userRegistro (String name, String apellidos, char sexo, String email, String password) throws SQLException {
+        String sql = "INSERT INTO Usuarios VALUES (?, ?, ?, ?, ?)";
+
+        try (Connection con = Conection.getConnection(); PreparedStatement statement = con.prepareStatement(sql)) {
+            statement.setString(1, name);
+            statement.setString(2, apellidos);
+            statement.setString(3, String.valueOf(sexo));
+            statement.setString(4, email);
+            statement.setString(5, password);
+
+            int rowsAffected = statement.executeUpdate();
+            return rowsAffected > 0;
+        }
+    }
+    //Este es mi evento
+    @FXML
+    private void Registrar () {
+        String name = nombre.getText().trim();
+        String apellido = apellidos.getText().trim();
+        char sex = opcionSeleccionada;
+        String email = usuario.getText().trim();
+        String password = contra.getText().trim();
+        String confirmPassword = confirm.getText().trim();
+
+        if (name.isEmpty()) {
+            Alert alert = new Alert(AlertType.ERROR, "Debes llenar todos los campos");
+            alert.show();
+            return;
+        }
+
+        if (String.valueOf(opcionSeleccionada).isEmpty()) {
+            Alert alert = new Alert(AlertType.ERROR, "Debes llenar todos los campos");
+            alert.show();
+            return;
+        }
+
+        if (!password.equals(confirmPassword)) {
+            Alert alert = new Alert(AlertType.ERROR, "Las contraseñas no coinciden");
+            alert.show();
+            return;
+        }
+
+        if (!validCorreo(email)) {
+            Alert alert = new Alert(AlertType.ERROR, "Ingresa un correo valido");
+            alert.show();
+            return;
+        }
+
+        try {
+            if (userRegistro(name, apellido, sex, email, confirmPassword)) {
+                Alert alert = new Alert(AlertType.CONFIRMATION, "Usuario registrado");
+                alert.show();
+                limpiaDatos();
+            } else {
+                Alert alert = new Alert(AlertType.ERROR, "No se pudo registrar el usuario");
+                alert.show();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            Alert alert = new Alert(AlertType.ERROR, "Error en la base de datos"+e.getMessage());
+            alert.show();
+        }
+
     }
 
 }

@@ -32,6 +32,15 @@ import javafx.stage.Stage;
 public class Vista_principalController implements Initializable {
 
     @FXML
+    private Button histo;
+
+    @FXML
+    private Button fav;
+
+    @FXML
+    private Button regis;
+
+    @FXML
     private Button btt_iniSecion;
 
     @FXML
