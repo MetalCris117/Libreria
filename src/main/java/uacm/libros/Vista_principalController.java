@@ -71,6 +71,7 @@ public class Vista_principalController implements Initializable {
         scene.getStylesheets().add(css);
 
         stage.setScene(scene);
+        stage.setTitle("Inicio de Sesion");
         stage.show();
     }
 

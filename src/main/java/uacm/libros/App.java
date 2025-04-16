@@ -26,6 +26,7 @@ public class App extends Application {
         //scene.getStylesheets().add(css); //Esto es para que me encuentre el css
 
         stage.setScene(scene);// Agregamos la ecena al ecenario
+        stage.setTitle("Pagina Principal");
         stage.show();// Mostramos el ecenario
 
         /*

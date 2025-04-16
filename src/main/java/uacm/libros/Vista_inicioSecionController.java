@@ -13,7 +13,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextFormatter;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
@@ -23,29 +25,6 @@ import javafx.stage.Stage;
  * @author crisu
  */
 public class Vista_inicioSecionController implements Initializable {
-    @FXML
-    private Label txt_corr;
-
-    @FXML
-    private Label txt_contra;
-
-    @FXML
-    private TextField txtF2;
-
-    @FXML
-    private Label text_titulo;
-
-    @FXML
-    private Label txt_subtitulo;
-
-    @FXML
-    private ImageView img;
-
-    @FXML
-    private Label txt_ask;
-
-    @FXML
-    private TextField txtF;
 
     @FXML
     private Button boton;
@@ -53,17 +32,53 @@ public class Vista_inicioSecionController implements Initializable {
     @FXML
     private Button bt_atras;
 
+    @FXML
+    private ImageView img;
 
+    @FXML
+    private Label text_titulo;
+
+    @FXML
+    private TextField txtF;
+
+    @FXML
+    private PasswordField txtF2;
+
+    @FXML
+    private Label txt_ask;
+
+    @FXML
+    private Label txt_contra;
+
+    @FXML
+    private Label txt_corr;
+
+    @FXML
+    private Label txt_subtitulo;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
+        txtF.setTextFormatter(new TextFormatter<>(change -> {
+            if (change.getText().contains(" ")) {
+                return null; // Rechaza el cambio si hay espacios
+            }
+            return change; // Acepta el cambio si no hay espacios
+        }));
+
+        txtF2.setTextFormatter(new TextFormatter<>(change -> {
+            if (change.getText().contains(" ")) {
+                return null; // Rechaza el cambio si hay espacios
+            }
+            return change; // Acepta el cambio si no hay espacios
+        }));
+
     }
 
     @FXML
-    private void cerrar(ActionEvent event) {
+    private void cerrar (ActionEvent event) {
         Stage stage = (Stage) ((Node) (event.getSource())).getScene().getWindow();
         stage.close();
     }
