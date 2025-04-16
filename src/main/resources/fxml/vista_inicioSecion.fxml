@@ -4,12 +4,18 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Reflection?>
+<?import javafx.scene.effect.Shadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="406.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uacm.libros.Vista_inicioSecionController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="389.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uacm.libros.Vista_inicioSecionController">
    <children>
       <Label fx:id="text_titulo" layoutX="35.0" layoutY="14.0" text="UACM Entre Páginas">
          <font>
@@ -21,12 +27,26 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <ImageView fx:id="img" fitHeight="92.0" fitWidth="103.0" layoutX="244.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="img" fitHeight="112.0" fitWidth="102.0" layoutX="256.0" layoutY="41.0" pickOnBounds="true">
          <image>
             <Image url="@../imagenes/user.png" />
          </image>
+         <effect>
+            <Lighting diffuseConstant="1.04" specularConstant="2.0" specularExponent="31.74" surfaceScale="6.45">
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant>
+                     <color>
+                        <Color green="0.3413706123828888" blue="1.0" />
+                     </color>
+                  </Light.Distant>
+               </light>
+            </Lighting>
+         </effect>
       </ImageView>
-      <Label fx:id="txt_ask" layoutX="116.0" layoutY="128.0" text="¿Ya tienes cuenta?">
+      <Label fx:id="txt_ask" layoutX="62.0" layoutY="121.0" text="¿Ya tienes cuenta?">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
@@ -37,13 +57,25 @@
          </font>
       </Label>
       <TextField fx:id="txtF" layoutX="35.0" layoutY="187.0" prefHeight="15.0" prefWidth="182.0" />
-      <Button fx:id="boton" alignment="CENTER" layoutX="233.0" layoutY="216.0" mnemonicParsing="false" prefHeight="0.0" prefWidth="74.0" style="-fx-background-color: black;" text="Acceder" textFill="WHITE" />
-      <Button fx:id="bt_atras" layoutX="35.0" layoutY="328.0" mnemonicParsing="false" onAction="#cerrar" style="-fx-background-color: transparent;" stylesheets="@../styles/vista_iniciosecion.css" text="&lt; Atrás" textAlignment="CENTER" underline="true" />
+      <Button fx:id="boton" alignment="CENTER" layoutX="256.0" layoutY="187.0" mnemonicParsing="false" onAction="#Login" prefHeight="0.0" prefWidth="74.0" style="-fx-background-color: black;" text="Acceder" textFill="WHITE" />
+      <Button fx:id="bt_atras" layoutX="35.0" layoutY="328.0" mnemonicParsing="false" onAction="#cerrar" style="-fx-background-color: transparent;" stylesheets="@../styles/vista_iniciosecion.css" text="&lt; Atrás" textAlignment="CENTER" underline="true">
+         <effect>
+            <Reflection />
+         </effect></Button>
       <Label fx:id="txt_contra" layoutX="35.0" layoutY="221.0" text="Ingresa tu contraseña:" textFill="#0000008c">
          <font>
             <Font name="Arial Bold" size="12.0" />
          </font>
       </Label>
       <PasswordField fx:id="txtF2" layoutX="35.0" layoutY="242.0" prefHeight="26.0" prefWidth="182.0" />
+      <Button fx:id="creaCuenta" layoutX="134.0" layoutY="329.0" mnemonicParsing="false" onAction="#abrirRegistro" style="-fx-background-color: transparent;" text="Crear Cuenta">
+         <font>
+            <Font name="Arial Bold" size="12.0" />
+         </font>
+         <effect>
+            <Reflection />
+         </effect>
+      </Button>
+      <Text fill="#0017ff" layoutX="35.0" layoutY="294.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Recuerda que no puedes poner espacios en blanco" underline="true" wrappingWidth="279.1199493408203" />
    </children>
 </AnchorPane>

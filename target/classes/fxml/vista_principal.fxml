@@ -2,14 +2,12 @@
 
 <?import javafx.scene.SubScene?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ScrollBar?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.effect.Glow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
@@ -28,24 +26,27 @@
          </font>
       </Label>
       <Button fx:id="btt_iniSecion" layoutX="484.0" layoutY="21.0" mnemonicParsing="false" onAction="#abrirInicioSecion" prefHeight="26.0" prefWidth="102.0" style="-fx-background-color: #17202a; -fx-background-radius: 5;" text="Iniciar Secion" textFill="WHITE" />
-      <HBox alignment="CENTER_RIGHT" layoutX="208.0" layoutY="17.0" prefHeight="34.0" prefWidth="254.0">
+      <HBox alignment="CENTER" layoutX="114.0" layoutY="17.0" prefHeight="34.0" prefWidth="350.0">
          <children>
-            <MenuBar fx:id="men_Bar" prefHeight="30.0" prefWidth="223.0" style="-fx-background-color: #f8f9f9;">
-              <menus>
-                <Menu mnemonicParsing="false" text="Historial">
-                  
-                </Menu>
-                <Menu mnemonicParsing="false" text="Favoritos">
-                  
-                </Menu>
-                <Menu mnemonicParsing="false" text="Registrarse">
-                  
-                </Menu>
-              </menus>
-               <effect>
-                  <Glow level="0.0" />
-               </effect>
-            </MenuBar>
+            <ButtonBar prefHeight="34.0" prefWidth="338.0">
+              <buttons>
+                <Button fx:id="histo" alignment="CENTER" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Historial" underline="true">
+                     <font>
+                        <Font name="Arial" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="fav" alignment="CENTER" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Favoritos" underline="true">
+                     <font>
+                        <Font name="Arial" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="regis" alignment="CENTER" mnemonicParsing="false" onAction="#abrirRegistro" prefHeight="23.0" prefWidth="86.0" style="-fx-background-color: transparent;" text="Registrarse" underline="true">
+                     <font>
+                        <Font name="Arial" size="12.0" />
+                     </font>
+                  </Button>
+              </buttons>
+            </ButtonBar>
          </children>
       </HBox>
       <MenuButton fx:id="menu_Categ" alignment="CENTER" contentDisplay="TEXT_ONLY" layoutX="14.0" layoutY="91.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="91.0" style="-fx-background-color: black; -fx-background-radius: 5;" text="Categorias" textFill="WHITE">

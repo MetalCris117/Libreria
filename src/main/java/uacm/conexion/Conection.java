@@ -12,7 +12,7 @@ public class Conection {
             try {
                 Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 
-                String url = "jdbc:sqlserver://localhost:1433;databaseName=BaseDatos;encrypt=true;trustServerCertificate=true";
+                String url = "jdbc:sqlserver://localhost:1433;databaseName=Libros;encrypt=true;trustServerCertificate=true";
                 String user = "userSQL";
                 String password = "root";
 

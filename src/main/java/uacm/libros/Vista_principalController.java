@@ -19,7 +19,6 @@ import javafx.scene.Scene;
 import javafx.scene.SubScene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.ScrollBar;
 import javafx.scene.control.TextField;
@@ -33,24 +32,28 @@ import javafx.stage.Stage;
 public class Vista_principalController implements Initializable {
 
     @FXML
-    private Label lb_inicio;
-    @FXML
-    private Label lb_titulo;
-    @FXML
     private Button btt_iniSecion;
-    @FXML
-    private MenuBar men_Bar;
-    @FXML
-    private MenuButton menu_Categ;
-    @FXML
-    private TextField text_Busqueda;
+
     @FXML
     private Button button_Buscar;
+
     @FXML
-    private SubScene vista_libros;
+    private Label lb_inicio;
+
+    @FXML
+    private Label lb_titulo;
+
+    @FXML
+    private MenuButton menu_Categ;
+
     @FXML
     private ScrollBar scroll;
 
+    @FXML
+    private TextField text_Busqueda;
+
+    @FXML
+    private SubScene vista_libros;
     /**
      * Initializes the controller class.
      */
@@ -75,9 +78,22 @@ public class Vista_principalController implements Initializable {
         stage.show();
     }
 
+    @FXML
+    private void abrirRegistro(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/vista_registro.fxml"));
+        Parent root = loader.load();
+
+        Stage stage = new Stage();
+        Scene scene = new Scene(root);
+
+        stage.setScene(scene);
+        stage.setTitle("Registro");
+        stage.show();
+    }
+
     private void Buscar() {
         String text = text_Busqueda.getText();
         System.out.println("Busqueda realizada: "+text);//Aquí se agrega la busqueda
     }
-    
+
 }
