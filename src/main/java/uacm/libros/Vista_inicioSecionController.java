@@ -19,6 +19,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -27,14 +28,7 @@ import javafx.scene.control.TextFormatter;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import uacm.conexion.Conection;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 
-/**
- * FXML Controller class
- *
- * @author crisu
- */
 public class Vista_inicioSecionController implements Initializable {
 
     @FXML
@@ -69,30 +63,34 @@ public class Vista_inicioSecionController implements Initializable {
 
     @FXML
     private Label txt_subtitulo;
-    /**
-     * Initializes the controller class.
-     */
+
+    //NUEVO: Referencia al controlador principal
+    private Vista_principalController principalController;
+
+    //NUEVO: Método para inyectar el controlador principal
+    public void setPrincipalController(Vista_principalController controller) {
+        this.principalController = controller;
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
         txtF.setTextFormatter(new TextFormatter<>(change -> {
             if (change.getText().contains(" ")) {
-                return null; // Rechaza el cambio si hay espacios
+                return null;
             }
-            return change; // Acepta el cambio si no hay espacios
+            return change;
         }));
 
         txtF2.setTextFormatter(new TextFormatter<>(change -> {
             if (change.getText().contains(" ")) {
-                return null; // Rechaza el cambio si hay espacios
+                return null;
             }
-            return change; // Acepta el cambio si no hay espacios
+            return change;
         }));
-
     }
 
     @FXML
-    private void cerrar (ActionEvent event) {
+    private void cerrar(ActionEvent event) {
         Stage stage = (Stage) ((Node) (event.getSource())).getScene().getWindow();
         stage.close();
     }
@@ -108,18 +106,18 @@ public class Vista_inicioSecionController implements Initializable {
         stage.setScene(scene);
         stage.setTitle("Registro");
         stage.show();
-        //Cerrar la ventana actual al obtener el botón desde el evento
+
         Stage ventanaActual = (Stage) ((Button) event.getSource()).getScene().getWindow();
         ventanaActual.close();
     }
 
     @FXML
-    private void Login () {
+    private void Login(ActionEvent event) {
         String correo = txtF.getText().trim();
         String password = txtF2.getText().trim();
 
         if (correo.isEmpty() || password.isEmpty()) {
-            Alert alert = new Alert(AlertType.ERROR, "Ingrese usuario y contraseña");
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Ingrese usuario y contraseña");
             alert.show();
             return;
         }
@@ -127,28 +125,36 @@ public class Vista_inicioSecionController implements Initializable {
         try (Connection con = Conection.getConnection()) {
             String sql = "SELECT * FROM Usuarios WHERE Correo = ? AND Contraseña = ?";
 
-            try (PreparedStatement statement = con.prepareStatement(sql)){
+            try (PreparedStatement statement = con.prepareStatement(sql)) {
                 statement.setString(1, correo);
                 statement.setString(2, password);
 
                 try (ResultSet res = statement.executeQuery()) {
                     if (res.next()) {
-                        Alert alert = new Alert(AlertType.CONFIRMATION, "Bienvenido");
+                        String nombreUsuario = res.getString("Nombre"); // Ajusta el nombre del campo si es distinto
+
+                        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Bienvenido " + nombreUsuario);
                         alert.show();
-                        //Aquí se puede abrir otra ventana
+
+                        //Aquí informamos al controlador principal
+                        if (principalController != null) {
+                            principalController.setUsuario(nombreUsuario);
+                        }
+
+                        //Cierra la ventana de login
+                        Stage ventanaLogin = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                        ventanaLogin.close();
+
                     } else {
-                        Alert alert = new Alert(AlertType.ERROR, "Usuario o contraseña incorrectos ");
+                        Alert alert = new Alert(Alert.AlertType.ERROR, "Usuario o contraseña incorrectos");
                         alert.show();
                     }
-
                 }
-
             }
-
         } catch (SQLException e) {
-            System.out.println("No se pudo conectar a la base de datos..."+e.getMessage());
+            System.out.println("No se pudo conectar a la base de datos..." + e.getMessage());
         }
-
+        
     }
 
 }

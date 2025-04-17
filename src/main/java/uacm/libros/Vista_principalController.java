@@ -22,6 +22,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.ScrollBar;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 /**
@@ -30,6 +31,9 @@ import javafx.stage.Stage;
  * @author crisu
  */
 public class Vista_principalController implements Initializable {
+    
+    @FXML
+    private AnchorPane rootPane;
 
     @FXML
     private Button histo;
@@ -63,6 +67,9 @@ public class Vista_principalController implements Initializable {
 
     @FXML
     private SubScene vista_libros;
+
+    private String usuarioActual = null;
+
     /**
      * Initializes the controller class.
      */
@@ -73,18 +80,29 @@ public class Vista_principalController implements Initializable {
 
     @FXML
     private void abrirInicioSecion(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/vista_inicioSecion.fxml"));
-        Parent root = loader.load();
+        if (usuarioActual == null) {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/vista_inicioSecion.fxml"));
+            Parent root = loader.load();
 
-        Stage stage = new Stage();
-        Scene scene = new Scene(root);
+            // Aquí recuperas el controlador del login
+            Vista_inicioSecionController loginController = loader.getController();
+            loginController.setPrincipalController(this); // ← le pasas el controlador principal
 
-        String css = getClass().getResource("/styles/vista_iniciosecion.css").toExternalForm();
-        scene.getStylesheets().add(css);
+            Stage stage = new Stage();
+            Scene scene = new Scene(root);
 
-        stage.setScene(scene);
-        stage.setTitle("Inicio de Sesion");
-        stage.show();
+            String css = getClass().getResource("/styles/vista_iniciosecion.css").toExternalForm();
+            scene.getStylesheets().add(css);
+
+            stage.setScene(scene);
+            stage.setTitle("Inicio de Sesión");
+            stage.show();
+        } else {
+            // Cierra sesión
+            usuarioActual = null;
+            lb_inicio.setText("Inicio");
+            btt_iniSecion.setText("Iniciar Sesión");
+        }
     }
 
     @FXML
@@ -104,5 +122,12 @@ public class Vista_principalController implements Initializable {
         String text = text_Busqueda.getText();
         System.out.println("Busqueda realizada: "+text);//Aquí se agrega la busqueda
     }
+
+    public void setUsuario(String nombre) {
+        usuarioActual = nombre;
+        lb_inicio.setText(nombre);
+        btt_iniSecion.setText("Cerrar Sesión");
+    }
+    
 
 }

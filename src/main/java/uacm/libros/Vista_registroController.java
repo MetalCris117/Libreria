@@ -1,8 +1,6 @@
 package uacm.libros;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 import javafx.event.ActionEvent;
@@ -22,7 +20,7 @@ import javafx.scene.control.TextFormatter;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import uacm.conexion.Conection;
+import uacm.conexion.UsuarioDAO;
 
 public class Vista_registroController {
 
@@ -71,7 +69,7 @@ public class Vista_registroController {
     @FXML
     private TextField usuario;
 
-    private char opcionSeleccionada;
+    private char opcionSeleccionada = '\0';
 
      /**
      * Initializes the controller class.
@@ -197,26 +195,6 @@ public class Vista_registroController {
         confirm.clear();
         usuario.clear();
     }
-    //Esta funcion me valida el correo
-    private boolean validCorreo (String email) {
-        String corr = "^[a-zA-Z0-9_+&-]+(?:\\.[a-zA-Z0-9_+&-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
-        return email.matches(corr);
-    }
-    //Aquí registro el usuario
-    private boolean userRegistro (String name, String apellidos, char sexo, String email, String password) throws SQLException {
-        String sql = "INSERT INTO Usuarios VALUES (?, ?, ?, ?, ?)";
-
-        try (Connection con = Conection.getConnection(); PreparedStatement statement = con.prepareStatement(sql)) {
-            statement.setString(1, name);
-            statement.setString(2, apellidos);
-            statement.setString(3, String.valueOf(sexo));
-            statement.setString(4, email);
-            statement.setString(5, password);
-
-            int rowsAffected = statement.executeUpdate();
-            return rowsAffected > 0;
-        }
-    }
     //Este es mi evento
     @FXML
     private void Registrar () {
@@ -226,33 +204,38 @@ public class Vista_registroController {
         String email = usuario.getText().trim();
         String password = contra.getText().trim();
         String confirmPassword = confirm.getText().trim();
+        UsuarioDAO userDAO = new UsuarioDAO ();
 
-        if (name.isEmpty()) {
+        // Validar campos vacíos
+        if (name.isEmpty() || apellido.isEmpty() || email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
             Alert alert = new Alert(AlertType.ERROR, "Debes llenar todos los campos");
             alert.show();
             return;
         }
 
-        if (String.valueOf(opcionSeleccionada).isEmpty()) {
-            Alert alert = new Alert(AlertType.ERROR, "Debes llenar todos los campos");
+        // Validar selección de sexo
+        if (sex == '\0') {
+            Alert alert = new Alert(AlertType.ERROR, "Debes seleccionar el sexo");
             alert.show();
             return;
         }
 
+        // Valida las contraseñas
         if (!password.equals(confirmPassword)) {
             Alert alert = new Alert(AlertType.ERROR, "Las contraseñas no coinciden");
             alert.show();
             return;
         }
 
-        if (!validCorreo(email)) {
-            Alert alert = new Alert(AlertType.ERROR, "Ingresa un correo valido");
+        // Validar formato de correo
+        if (!userDAO.validCorreo(email)) {
+            Alert alert = new Alert(AlertType.ERROR, "Ingresa un correo válido");
             alert.show();
             return;
         }
 
         try {
-            if (userRegistro(name, apellido, sex, email, confirmPassword)) {
+            if (userDAO.userRegistro(name, apellido, sex, email, confirmPassword)) {
                 Alert alert = new Alert(AlertType.CONFIRMATION, "Usuario registrado");
                 alert.show();
                 limpiaDatos();
