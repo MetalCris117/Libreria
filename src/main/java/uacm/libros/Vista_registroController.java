@@ -197,7 +197,7 @@ public class Vista_registroController {
     }
     //Este es mi evento
     @FXML
-    private void Registrar () {
+    private void Registrar () throws SQLException {
         String name = nombre.getText().trim();
         String apellido = apellidos.getText().trim();
         char sex = opcionSeleccionada;
@@ -206,34 +206,37 @@ public class Vista_registroController {
         String confirmPassword = confirm.getText().trim();
         UsuarioDAO userDAO = new UsuarioDAO ();
 
-        // Validar campos vacíos
+        // Valida campos vacíos
         if (name.isEmpty() || apellido.isEmpty() || email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
             Alert alert = new Alert(AlertType.ERROR, "Debes llenar todos los campos");
             alert.show();
             return;
         }
-
-        // Validar selección de sexo
+        // Valida selección de sexo
         if (sex == '\0') {
             Alert alert = new Alert(AlertType.ERROR, "Debes seleccionar el sexo");
             alert.show();
             return;
         }
-
         // Valida las contraseñas
         if (!password.equals(confirmPassword)) {
             Alert alert = new Alert(AlertType.ERROR, "Las contraseñas no coinciden");
             alert.show();
             return;
         }
-
+        //Valida el correo
+        if (userDAO.existsCorreo(email)) {
+            Alert alert = new Alert(AlertType.ERROR, "El correo ya existe");
+            alert.show();
+            return;
+        }
         // Validar formato de correo
         if (!userDAO.validCorreo(email)) {
             Alert alert = new Alert(AlertType.ERROR, "Ingresa un correo válido");
             alert.show();
             return;
         }
-
+        //Lo registro
         try {
             if (userDAO.userRegistro(name, apellido, sex, email, confirmPassword)) {
                 Alert alert = new Alert(AlertType.CONFIRMATION, "Usuario registrado");
@@ -244,7 +247,6 @@ public class Vista_registroController {
                 alert.show();
             }
         } catch (SQLException e) {
-            e.printStackTrace();
             Alert alert = new Alert(AlertType.ERROR, "Error en la base de datos"+e.getMessage());
             alert.show();
         }

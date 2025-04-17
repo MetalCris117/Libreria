@@ -2,6 +2,7 @@ package uacm.conexion;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class UsuarioDAO {
@@ -25,5 +26,20 @@ public class UsuarioDAO {
             return rowsAffected > 0;
         }
     }
+
+    public boolean existsCorreo(String email) throws SQLException {
+        try (Connection con = Conection.getConnection()) {
+            String sql = "SELECT TOP 1 1 FROM Usuarios WHERE Correo = ?"; // Optimizado, no necesitas traer todo
+    
+            try (PreparedStatement statement = con.prepareStatement(sql)) {
+                statement.setString(1, email);
+    
+                try (ResultSet res = statement.executeQuery()) {
+                    return res.next(); // Devuelve true si encontró un resultado
+                    //res.next() ya te dice si hay algún resultado.
+                }
+            }
+        }
+    }    
 
 }
