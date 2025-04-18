@@ -16,11 +16,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.SubScene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
-import javafx.scene.control.ScrollBar;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.SplitMenuButton;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -31,7 +31,12 @@ import javafx.stage.Stage;
  * @author crisu
  */
 public class Vista_principalController implements Initializable {
-    
+    @FXML
+    private SplitMenuButton carrito;
+
+    @FXML
+    private ScrollPane vistaScroll;
+
     @FXML
     private AnchorPane rootPane;
 
@@ -60,13 +65,7 @@ public class Vista_principalController implements Initializable {
     private MenuButton menu_Categ;
 
     @FXML
-    private ScrollBar scroll;
-
-    @FXML
     private TextField text_Busqueda;
-
-    @FXML
-    private SubScene vista_libros;
 
     private String usuarioActual = null;
 

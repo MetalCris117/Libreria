@@ -6,11 +6,15 @@
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
@@ -18,10 +22,24 @@
    <top>
       <HBox alignment="CENTER" prefHeight="80.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="titulo" alignment="CENTER" contentDisplay="CENTER" text="Crea una Cuenta" textAlignment="CENTER">
+            <Label fx:id="titulo" alignment="CENTER" contentDisplay="CENTER" prefHeight="53.0" prefWidth="252.0" text="Crea una Cuenta" textAlignment="CENTER">
                <font>
-                  <Font name="Arial Bold" size="18.0" />
+                  <Font name="Arial Bold" size="20.0" />
                </font>
+               <effect>
+                  <Lighting diffuseConstant="0.0" specularConstant="1.57" surfaceScale="1.96">
+                     <bumpInput>
+                        <Shadow />
+                     </bumpInput>
+                     <light>
+                        <Light.Distant azimuth="87.94" elevation="54.91">
+                           <color>
+                              <Color red="0.1507105976343155" green="0.009999999776482582" blue="1.0" />
+                           </color>
+                        </Light.Distant>
+                     </light>
+                  </Lighting>
+               </effect>
             </Label>
          </children>
       </HBox>
@@ -29,33 +47,36 @@
    <center>
       <AnchorPane prefHeight="335.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <TextField fx:id="nombre" layoutX="36.0" layoutY="38.0" prefHeight="26.0" prefWidth="164.0" promptText="Nombre" />
-            <TextField fx:id="apellidos" layoutX="221.0" layoutY="38.0" prefHeight="26.0" prefWidth="153.0" promptText="Apellidos" />
-            <TextField fx:id="usuario" layoutX="37.0" layoutY="106.0" prefHeight="26.0" prefWidth="339.0" promptText="usuario@gmail.com" />
-            <Text fx:id="indicacion" fill="#4a53ff" layoutX="34.0" layoutY="153.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Solo puedes utilizar letras minúsculas y números " />
-            <PasswordField fx:id="contra" layoutX="36.0" layoutY="178.0" promptText="Contraseña" />
-            <PasswordField fx:id="confirm" layoutX="225.0" layoutY="178.0" prefHeight="26.0" prefWidth="150.0" promptText="Confirmación" />
-            <CheckBox fx:id="mostrarCon" layoutX="37.0" layoutY="219.0" mnemonicParsing="false" onAction="#verContra" text="Mostrar Contraseña" />
-            <Button fx:id="siguiente" layoutX="268.0" layoutY="258.0" mnemonicParsing="false" onAction="#Registrar" style="-fx-background-color: black;" text="Sguiente" textFill="WHITE" />
-            <Button fx:id="conCuenta" layoutX="83.0" layoutY="258.0" mnemonicParsing="false" onAction="#abrirInicioSecion" style="-fx-background-color: transparent;" text="Ya tengo cuenta" />
+            <TextField fx:id="nombre" layoutX="37.0" layoutY="38.0" prefHeight="26.0" prefWidth="160.0" promptText="Nombre" style="-fx-background-radius: 6; -fx-border-color: black; -fx-border-radius: 6;" />
+            <TextField fx:id="apellidos" layoutX="216.0" layoutY="38.0" prefHeight="26.0" prefWidth="160.0" promptText="Apellidos" style="-fx-background-radius: 6; -fx-border-color: black; -fx-border-radius: 6;" />
+            <TextField fx:id="usuario" layoutX="37.0" layoutY="119.0" prefHeight="26.0" prefWidth="339.0" promptText="usuario@gmail.com" style="-fx-background-radius: 6; -fx-border-color: black; -fx-border-radius: 6;" />
+            <Text fx:id="indicacion" fill="#4a53ff" layoutX="41.0" layoutY="168.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Solo puedes utilizar letras minúsculas y números " underline="true" />
+            <PasswordField fx:id="contra" layoutX="37.0" layoutY="191.0" promptText="Contraseña" style="-fx-background-radius: 6; -fx-border-color: black; -fx-border-radius: 6;" />
+            <PasswordField fx:id="confirm" layoutX="221.0" layoutY="191.0" prefHeight="26.0" prefWidth="150.0" promptText="Confirmación" style="-fx-background-radius: 6; -fx-border-color: black; -fx-border-radius: 6;" />
+            <CheckBox fx:id="mostrarCon" layoutX="42.0" layoutY="236.0" mnemonicParsing="false" onAction="#verContra" text="Mostrar Contraseña" />
+            <Button fx:id="siguiente" layoutX="245.0" layoutY="268.0" mnemonicParsing="false" onAction="#Registrar" prefHeight="33.0" prefWidth="86.0" style="-fx-background-color: #109DFA; -fx-background-radius: 8;" text="Siguiente" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold" size="13.0" />
+               </font></Button>
+            <Button fx:id="conCuenta" layoutX="66.0" layoutY="272.0" mnemonicParsing="false" onAction="#abrirInicioSecion" style="-fx-background-color: transparent;" text="Ya tengo cuenta" underline="true" />
             <ImageView fitHeight="223.0" fitWidth="164.0" layoutX="393.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../imagenes/creaUser.png" />
                </image>
             </ImageView>
-            <Text fx:id="subtitulo" layoutX="41.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" text="UACM Entre Páginas">
+            <Text fx:id="subtitulo" layoutX="41.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" text="UACM Entre Páginas" AnchorPane.leftAnchor="41.0" AnchorPane.topAnchor="1.705078125">
                <font>
                   <Font name="Arial Bold" size="18.0" />
                </font>
             </Text>
-            <TextField fx:id="auxContra" layoutX="36.0" layoutY="178.0" managed="false" visible="false" />
-            <TextField fx:id="aux2Contra" layoutX="225.0" layoutY="178.0" managed="false" prefHeight="26.0" prefWidth="150.0" visible="false" />
-            <RadioButton fx:id="H" layoutX="57.0" layoutY="74.0" mnemonicParsing="false" text="Hombre">
+            <TextField fx:id="auxContra" layoutX="37.0" layoutY="191.0" managed="false" style="-fx-background-radius: 6; -fx-border-color: black; -fx-border-radius: 6;" visible="false" />
+            <TextField fx:id="aux2Contra" layoutX="221.0" layoutY="191.0" managed="false" prefHeight="26.0" prefWidth="150.0" style="-fx-background-radius: 6; -fx-border-color: black; -fx-border-radius: 6;" visible="false" />
+            <RadioButton fx:id="H" layoutX="41.0" layoutY="82.0" mnemonicParsing="false" text="Hombre">
                <font>
                   <Font name="Arial" size="12.0" />
                </font>
             </RadioButton>
-            <RadioButton fx:id="M" layoutX="181.0" layoutY="74.0" mnemonicParsing="false" text="Mujer">
+            <RadioButton fx:id="M" layoutX="138.0" layoutY="82.0" mnemonicParsing="false" text="Mujer">
                <font>
                   <Font name="Arial" size="12.0" />
                </font>

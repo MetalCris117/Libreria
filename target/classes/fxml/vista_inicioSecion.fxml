@@ -6,7 +6,6 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.Light.Distant?>
 <?import javafx.scene.effect.Lighting?>
-<?import javafx.scene.effect.Reflection?>
 <?import javafx.scene.effect.Shadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -17,7 +16,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="389.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uacm.libros.Vista_inicioSecionController">
    <children>
-      <Label fx:id="text_titulo" layoutX="35.0" layoutY="14.0" text="UACM Entre Páginas">
+      <Label fx:id="text_titulo" layoutX="35.0" layoutY="14.0" text="UACM Entre Páginas" AnchorPane.leftAnchor="35.0" AnchorPane.topAnchor="14.0">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>
@@ -56,25 +55,22 @@
             <Font name="Arial Bold" size="12.0" />
          </font>
       </Label>
-      <TextField fx:id="txtF" layoutX="35.0" layoutY="187.0" prefHeight="15.0" prefWidth="182.0" />
-      <Button fx:id="boton" alignment="CENTER" layoutX="256.0" layoutY="187.0" mnemonicParsing="false" onAction="#Login" prefHeight="0.0" prefWidth="74.0" style="-fx-background-color: black;" text="Acceder" textFill="WHITE" />
-      <Button fx:id="bt_atras" layoutX="35.0" layoutY="328.0" mnemonicParsing="false" onAction="#cerrar" style="-fx-background-color: transparent;" stylesheets="@../styles/vista_iniciosecion.css" text="&lt; Atrás" textAlignment="CENTER" underline="true">
-         <effect>
-            <Reflection />
-         </effect></Button>
+      <TextField fx:id="txtF" layoutX="35.0" layoutY="187.0" prefHeight="15.0" prefWidth="182.0" style="-fx-border-color: black; -fx-border-radius: 6; -fx-background-radius: 6;" />
+      <Button fx:id="boton" alignment="CENTER" layoutX="256.0" layoutY="187.0" mnemonicParsing="false" onAction="#Login" prefHeight="0.0" prefWidth="74.0" style="-fx-background-color: black; -fx-background-radius: 6;" text="Acceder" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
+      <Button fx:id="bt_atras" alignment="CENTER" layoutX="35.0" layoutY="328.0" mnemonicParsing="false" onAction="#cerrar" style="-fx-background-color: transparent;" stylesheets="@../styles/vista_iniciosecion.css" text="Cerrar" textAlignment="CENTER" underline="true" />
       <Label fx:id="txt_contra" layoutX="35.0" layoutY="221.0" text="Ingresa tu contraseña:" textFill="#0000008c">
          <font>
             <Font name="Arial Bold" size="12.0" />
          </font>
       </Label>
-      <PasswordField fx:id="txtF2" layoutX="35.0" layoutY="242.0" prefHeight="26.0" prefWidth="182.0" />
-      <Button fx:id="creaCuenta" layoutX="134.0" layoutY="329.0" mnemonicParsing="false" onAction="#abrirRegistro" style="-fx-background-color: transparent;" text="Crear Cuenta">
+      <PasswordField fx:id="txtF2" layoutX="35.0" layoutY="242.0" prefHeight="26.0" prefWidth="182.0" style="-fx-border-color: black; -fx-border-radius: 6; -fx-background-radius: 6;" />
+      <Button fx:id="creaCuenta" layoutX="134.0" layoutY="326.0" mnemonicParsing="false" onAction="#abrirRegistro" prefHeight="26.0" prefWidth="92.0" style="-fx-background-color: #109DFA; -fx-background-radius: 8;" text="Crear Cuenta" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="12.0" />
          </font>
-         <effect>
-            <Reflection />
-         </effect>
       </Button>
       <Text fill="#0017ff" layoutX="35.0" layoutY="294.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Recuerda que no puedes poner espacios en blanco" underline="true" wrappingWidth="279.1199493408203" />
    </children>
