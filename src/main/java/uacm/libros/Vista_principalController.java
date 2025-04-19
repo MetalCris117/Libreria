@@ -4,20 +4,16 @@
  */
 package uacm.libros;
 
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
 
-//import javax.swing.Action;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -26,12 +22,9 @@ import javafx.scene.control.MenuButton;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.SplitMenuButton;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import uacm.conexion.LibroDAO;
 import uacm.modelo.Libro;
@@ -96,10 +89,6 @@ public class Vista_principalController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         button_Buscar.setOnAction(event -> Buscar());
 
-        GridPane gridPane = new GridPane();
-        gridPane.setHgap(20);
-        gridPane.setVgap(20);
-
         LibroDAO lib = null;
         try {
             lib = new LibroDAO();
@@ -108,42 +97,35 @@ public class Vista_principalController implements Initializable {
         }
         List<Libro> libros = lib.obtenerTodosLosLibros();
 
+        cuadricula = new GridPane();
+        cuadricula.setHgap(20);
+        cuadricula.setVgap(20);
+
         int column = 0;
         int row = 0;
 
         for (Libro libro : libros) {
-            // Crear contenedor para cada libro
-            VBox libroBox = new VBox();
-            libroBox.setAlignment(Pos.CENTER);
-            libroBox.setSpacing(10);
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/vista_libro.fxml"));
+                VBox libroVista = loader.load();
 
-            // Crear imagen desde los bytes (la portada)
-            byte[] imagenBytes = libro.getPortada();
-            Image image = new Image(new ByteArrayInputStream(imagenBytes));
-            ImageView imageView = new ImageView(image);
-            imageView.setFitWidth(120);
-            imageView.setFitHeight(180);
-            imageView.setPreserveRatio(true);
+                Vista_libroController controlador = loader.getController();
+                controlador.setDatos(libro);
 
-            // Crear etiqueta con título y autor
-            Label label = new Label(libro.getTitulo() + "\n" + libro.getAutor());
-            label.setWrapText(true);
-            label.setTextAlignment(TextAlignment.CENTER);
+                cuadricula.add(libroVista, column, row);
 
-            // Agregar imagen y texto al VBox
-            libroBox.getChildren().addAll(imageView, label);
+                column++;
+                if (column == 4) {
+                    column = 0;
+                    row++;
+                }
 
-            // Agregar VBox al GridPane
-            gridPane.add(libroBox, column, row);
-
-            column++;
-            if (column == 4) { // 4 columnas por fila
-                column = 0;
-                row++;
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
-        // Finalmente, agregar el GridPane al ScrollPane
-        vistaScroll.setContent(gridPane);
+
+        vistaScroll.setContent(cuadricula);
 
     }
 
