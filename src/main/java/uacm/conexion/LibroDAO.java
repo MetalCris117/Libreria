@@ -22,7 +22,7 @@ public class LibroDAO {
     public List<Libro> obtenerTodosLosLibros() {
         List<Libro> libros = new ArrayList<>();
 
-        String sql = "SELECT Titulo, Autor, AnioPublicacion, Genero, Portada FROM Libreria";
+        String sql = "SELECT Titulo, Autor, AnioPublicacion, Editorial, Genero, Presio, Existencias, Portada FROM Libreria";
 
         try (Connection conn = Conection.getConnection();
             PreparedStatement stmt = conn.prepareStatement(sql);
@@ -32,10 +32,13 @@ public class LibroDAO {
                 String titulo = rs.getString("Titulo");
                 String autor = rs.getString("Autor");
                 int anioP = rs.getInt("AnioPublicacion");
+                String edit = rs.getString("Editorial");
                 String genero = rs.getString("Genero");
+                float presio = rs.getFloat("Presio");
+                int exis = rs.getInt("Existencias");
                 byte[] portada = rs.getBytes("Portada");
 
-                libros.add(new Libro(titulo, autor, anioP, genero, portada));
+                libros.add(new Libro(titulo, autor, anioP, edit, genero, presio, exis, portada));
             }
 
         } catch (SQLException e) {

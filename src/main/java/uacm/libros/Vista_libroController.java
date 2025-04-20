@@ -42,7 +42,7 @@ public class Vista_libroController {
         //Aquí le estoy asegnando a los lbel el titulo, autor, etc
         lb_titulo.setText(libro.getTitulo());
         lb_autor.setText(libro.getAutor());
-        lb_anio.setText(String.valueOf(libro.getAnioPublicacion()));
+        lb_anio.setText(String.valueOf("Presio: "+libro.getPresio())+"$");
 
         if (libro.getPortada() != null) {
             Image image = new Image(new ByteArrayInputStream(libro.getPortada()));

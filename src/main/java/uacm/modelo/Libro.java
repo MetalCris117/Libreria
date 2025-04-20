@@ -4,14 +4,20 @@ public class Libro {
     private String titulo;
     private String autor;
     private int anioPublicacion;
+    private String editorial;
     private String genero;
+    private float presio;
+    private int existecias;
     private byte[] portada;
 
-    public Libro(String titulo, String autor, int anioP, String genero, byte[] portada) {
+    public Libro(String titulo, String autor, int anioP, String editorial, String genero, float presio, int exist, byte[] portada) {
         this.titulo = titulo;
         this.autor = autor;
         this.anioPublicacion = anioP;
+        this.editorial = editorial;
         this.genero = genero;
+        this.presio = presio;
+        this.existecias = exist;
         this.portada = portada;
     }
 
@@ -19,16 +25,28 @@ public class Libro {
         return titulo;
     }
 
+    public String getAutor() {
+        return autor;
+    }
+
     public int getAnioPublicacion() {
         return anioPublicacion;
+    }
+
+    public String getEditorial() {
+        return editorial;
     }
 
     public String getGenero() {
         return genero;
     }
 
-    public String getAutor() {
-        return autor;
+    public float getPresio() {
+        return presio;
+    }
+
+    public int getExistencias() {
+        return existecias;
     }
 
     public byte[] getPortada() {

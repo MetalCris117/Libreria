@@ -26,10 +26,10 @@ public class UsuarioDAO {
             return rowsAffected > 0;
         }
     }
-
+    //Compruebo que si ya existe el correo
     public boolean existsCorreo(String email) throws SQLException {
         try (Connection con = Conection.getConnection()) {
-            String sql = "SELECT TOP 1 1 FROM Usuarios WHERE Correo = ?"; // Optimizado, no necesitas traer todo
+            String sql = "SELECT TOP 1 1 FROM Usuarios WHERE Correo = ?";
     
             try (PreparedStatement statement = con.prepareStatement(sql)) {
                 statement.setString(1, email);

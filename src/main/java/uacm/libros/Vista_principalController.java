@@ -115,7 +115,7 @@ public class Vista_principalController implements Initializable {
                 cuadricula.add(libroVista, column, row);
 
                 column++;
-                if (column == 4) {
+                if (column == 7) {
                     column = 0;
                     row++;
                 }
