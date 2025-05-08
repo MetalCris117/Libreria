@@ -1,7 +1,11 @@
-uacm\libros\Vista_inicioSecionController.class
-uacm\libros\Vista_principalController.class
+uacm\modelo\Libro.class
+uacm\libros\Vista_registroController.class
 uacm\libros\Vista_PagoController.class
 module-info.class
+uacm\libros\Vista_libroController.class
 uacm\conexion\Conection.class
-uacm\conexion\MiShutdownHook.class
+uacm\conexion\UsuarioDAO.class
+uacm\libros\Vista_inicioSecionController.class
+uacm\libros\Vista_principalController.class
+uacm\conexion\LibroDAO.class
 uacm\libros\App.class

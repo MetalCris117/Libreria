@@ -1,6 +1,7 @@
 package uacm.modelo;
 
 public class Libro {
+    private int id_libro;
     private String titulo;
     private String autor;
     private int anioPublicacion;
@@ -19,6 +20,10 @@ public class Libro {
         this.presio = presio;
         this.existecias = exist;
         this.portada = portada;
+    }
+
+    public int getId_Libro() {
+        return id_libro;
     }
 
     public String getTitulo() {

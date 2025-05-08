@@ -24,7 +24,7 @@ SELECT
 	221.22,
 	15,
     BulkColumn 
-FROM OPENROWSET(BULK 'F:\Mis archivos\Personal\Javafx_cons\libros\src\main\resources\imagenes\portada_Narnia.png', SINGLE_BLOB) AS Imagen;
+FROM OPENROWSET(BULK 'E:\Mis archivos\Personal\Javafx_cons\libros\src\main\resources\imagenes\portada_Narnia.png', SINGLE_BLOB) AS Imagen;
 
 INSERT INTO Libreria (Titulo, Autor, AnioPublicacion, Editorial, Genero, Presio, Existencias, Portada)
 SELECT 
@@ -36,7 +36,7 @@ SELECT
 	388,
 	10,
     BulkColumn 
-FROM OPENROWSET(BULK 'F:\Mis archivos\Personal\Javafx_cons\libros\src\main\resources\imagenes\codigoDaVinci.jpg', SINGLE_BLOB) AS Imagen;
+FROM OPENROWSET(BULK 'E:\Mis archivos\Personal\Javafx_cons\libros\src\main\resources\imagenes\codigoDaVinci.jpg', SINGLE_BLOB) AS Imagen;
 
 INSERT INTO Libreria (Titulo, Autor, AnioPublicacion, Editorial, Genero, Presio, Existencias, Portada)
 SELECT 
@@ -48,7 +48,7 @@ SELECT
 	450.44,
 	50,
     BulkColumn 
-FROM OPENROWSET(BULK 'F:\Mis archivos\Personal\Javafx_cons\libros\src\main\resources\imagenes\harry_potter1.jpg', SINGLE_BLOB) AS Imagen;
+FROM OPENROWSET(BULK 'E:\Mis archivos\Personal\Javafx_cons\libros\src\main\resources\imagenes\harry_potter1.jpg', SINGLE_BLOB) AS Imagen;
 
 INSERT INTO Libreria (Titulo, Autor, AnioPublicacion, Editorial, Genero, Presio, Existencias, Portada)
 SELECT 
@@ -60,7 +60,7 @@ SELECT
 	120,
 	60,
     BulkColumn 
-FROM OPENROWSET(BULK 'F:\Mis archivos\Personal\Javafx_cons\libros\src\main\resources\imagenes\elPrincipito.jpg', SINGLE_BLOB) AS Imagen;
+FROM OPENROWSET(BULK 'E:\Mis archivos\Personal\Javafx_cons\libros\src\main\resources\imagenes\elPrincipito.jpg', SINGLE_BLOB) AS Imagen;
 
 INSERT INTO Libreria (Titulo, Autor, AnioPublicacion, Editorial, Genero, Presio, Existencias, Portada)
 SELECT 
@@ -72,7 +72,7 @@ SELECT
 	620,
 	30,
     BulkColumn 
-FROM OPENROWSET(BULK 'F:\Mis archivos\Personal\Javafx_cons\libros\src\main\resources\imagenes\histroriaDeDosC.jpg', SINGLE_BLOB) AS Imagen;
+FROM OPENROWSET(BULK 'E:\Mis archivos\Personal\Javafx_cons\libros\src\main\resources\imagenes\histroriaDeDosC.jpg', SINGLE_BLOB) AS Imagen;
 
 INSERT INTO Libreria (Titulo, Autor, AnioPublicacion, Editorial, Genero, Presio, Existencias, Portada)
 SELECT 
@@ -84,7 +84,7 @@ SELECT
 	329,
 	50,
     BulkColumn 
-FROM OPENROWSET(BULK 'F:\Mis archivos\Personal\Javafx_cons\libros\src\main\resources\imagenes\pabellonRojo.jpg', SINGLE_BLOB) AS Imagen;
+FROM OPENROWSET(BULK 'E:\Mis archivos\Personal\Javafx_cons\libros\src\main\resources\imagenes\pabellonRojo.jpg', SINGLE_BLOB) AS Imagen;
 
 INSERT INTO Libreria (Titulo, Autor, AnioPublicacion, Editorial, Genero, Presio, Existencias, Portada)
 SELECT 
@@ -96,7 +96,7 @@ SELECT
 	880.50,
 	10,
     BulkColumn 
-FROM OPENROWSET(BULK 'F:\Mis archivos\Personal\Javafx_cons\libros\src\main\resources\imagenes\alicia.jpg', SINGLE_BLOB) AS Imagen;
+FROM OPENROWSET(BULK 'E:\Mis archivos\Personal\Javafx_cons\libros\src\main\resources\imagenes\alicia.jpg', SINGLE_BLOB) AS Imagen;
 
 INSERT INTO Libreria (Titulo, Autor, AnioPublicacion, Editorial, Genero, Presio, Existencias, Portada)
 SELECT 
@@ -108,4 +108,4 @@ SELECT
 	130,
 	27,
     BulkColumn 
-FROM OPENROWSET(BULK 'F:\Mis archivos\Personal\Javafx_cons\libros\src\main\resources\imagenes\ella.jpg', SINGLE_BLOB) AS Imagen;
+FROM OPENROWSET(BULK 'E:\Mis archivos\Personal\Javafx_cons\libros\src\main\resources\imagenes\ella.jpg', SINGLE_BLOB) AS Imagen;

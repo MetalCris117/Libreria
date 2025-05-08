@@ -2,13 +2,19 @@ package uacm.libros;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import uacm.conexion.CarritoDAO;
 import uacm.modelo.Libro;
 
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
 
 public class Vista_libroController {
     @FXML
@@ -40,6 +46,7 @@ public class Vista_libroController {
 
     public void setDatos(Libro libro) {
         //Aquí le estoy asegnando a los lbel el titulo, autor, etc
+        this.libroActual = libro;
         lb_titulo.setText(libro.getTitulo());
         lb_autor.setText(libro.getAutor());
         lb_anio.setText(String.valueOf("Presio: "+libro.getPresio())+"$");
@@ -52,14 +59,26 @@ public class Vista_libroController {
 
     @FXML
     private void verDetalles(ActionEvent event) {
-        System.out.println("Ver detalles del libro: ");
-        // Aquí podrías abrir una nueva ventana con más info
+        //Falta modificar cuanto imicies sesion
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/vista_detallesLibro.fxml"));
+            Parent detalle = loader.load();
+
+            Vista_detalleLibroController control = loader.getController();
+            control.setDatos(libroActual);
+
+            Scene currScene = ((Node) event.getSource()).getScene();//Cambia la escena actual para mostrar el nuevo contenido
+            currScene.setRoot(detalle);// esto reemplaza la vista actual en la misma ventana
+            
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     
     @FXML
     private void agregarAlCarrito(ActionEvent event) {
-        System.out.println("Libro agregado al carrito: ");
-        // Aquí podrías agregarlo a una lista o base de datos de carrito
+        CarritoDAO carrito = new CarritoDAO();
+        carrito.agregarAlCarrito(libroActual.getId_Libro());
     }
 
 }

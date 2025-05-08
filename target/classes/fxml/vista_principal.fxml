@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="rootPane" prefHeight="398.0" prefWidth="606.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uacm.libros.Vista_principalController">
+<AnchorPane id="AnchorPane" fx:id="rootPane" prefHeight="501.0" prefWidth="779.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uacm.libros.Vista_principalController">
    
       <children>
          <Label fx:id="lb_inicio" layoutX="14.0" layoutY="20.0" prefHeight="20.0" prefWidth="51.0" text="Inicio" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="20.0">
