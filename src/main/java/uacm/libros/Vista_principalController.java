@@ -89,6 +89,12 @@ public class Vista_principalController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        usuarioActual = Session.getUsuarioActual();
+        if (usuarioActual != null) {
+            lb_inicio.setText(usuarioActual.getNombre());
+            btt_iniSecion.setText("Cerrar Sesión");
+        }
+        
         button_Buscar.setOnAction(event -> Buscar());
 
         LibroDAO lib = null;

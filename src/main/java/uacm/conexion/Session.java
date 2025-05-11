@@ -6,7 +6,7 @@ public class Session {
     private static Usuario usuarioActual;
 
     private Session() {
-        // Constructor privado para evitar instanciación
+        // Constructor privado para evitar que se instancie
     }
 
     public static void iniciarSesion(Usuario usuario) {

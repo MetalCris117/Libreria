@@ -53,7 +53,7 @@
             <Font name="Arial" size="13.0" />
          </font>
       </Label>
-      <Button fx:id="bt_inicioSesion" layoutX="648.0" layoutY="30.0" mnemonicParsing="false" style="-fx-background-color: black; -fx-background-radius: 6;" text="Iniciar Sesion" textFill="WHITE" wrapText="true" AnchorPane.rightAnchor="41.599999999999994" AnchorPane.topAnchor="24.0">
+      <Button fx:id="bt_inicioSesion" layoutX="648.0" layoutY="30.0" mnemonicParsing="false" onAction="#inicioSesion" style="-fx-background-color: black; -fx-background-radius: 6;" text="Iniciar Sesion" textFill="WHITE" wrapText="true" AnchorPane.rightAnchor="41.599999999999994" AnchorPane.topAnchor="24.0">
          <font>
             <Font name="Arial Bold" size="13.0" />
          </font>

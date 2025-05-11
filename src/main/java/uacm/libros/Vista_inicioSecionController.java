@@ -67,10 +67,16 @@ public class Vista_inicioSecionController implements Initializable {
 
     //NUEVO: Referencia al controlador principal
     private Vista_principalController principalController;
+    private Vista_detalleLibroController detalleController;
+
 
     //NUEVO: Método para inyectar el controlador principal
     public void setPrincipalController(Vista_principalController controller) {
         this.principalController = controller;
+    }
+
+    public void setDetalleLibroController(Vista_detalleLibroController controller) {
+        this.detalleController = controller;
     }
 
     @Override
@@ -149,6 +155,9 @@ public class Vista_inicioSecionController implements Initializable {
                             principalController.setUsuario(usuario);
                         }
 
+                        if (detalleController != null) {
+                            detalleController.setUsuario(usuario);
+                        }
                         // Cierra la ventana de login
                         Stage ventanaLogin = (Stage) ((Node) event.getSource()).getScene().getWindow();
                         ventanaLogin.close();
