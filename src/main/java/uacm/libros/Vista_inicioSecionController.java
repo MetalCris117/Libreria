@@ -28,6 +28,7 @@ import javafx.scene.control.TextFormatter;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import uacm.conexion.Conection;
+import uacm.modelo.Usuario;
 
 public class Vista_inicioSecionController implements Initializable {
 
@@ -131,17 +132,24 @@ public class Vista_inicioSecionController implements Initializable {
 
                 try (ResultSet res = statement.executeQuery()) {
                     if (res.next()) {
-                        String nombreUsuario = res.getString("Nombre"); // Ajusta el nombre del campo si es distinto
+                        //todos los campos necesarios del usuario
+                        int id = res.getInt("Id");
+                        String nombre = res.getString("Nombre");
+                        String apellidos = res.getString("Apellidos");
+                        String sexo = res.getString("Sexo");
+                        String contraseña = res.getString("Contraseña");
 
-                        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Bienvenido " + nombreUsuario);
+                        Usuario usuario = new Usuario(id, nombre, apellidos, sexo, correo, contraseña);
+
+                        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Bienvenido " + usuario.getNombre());
                         alert.show();
 
-                        //Aquí informamos al controlador principal
+                        // Informa al controlador principal
                         if (principalController != null) {
-                            principalController.setUsuario(nombreUsuario);
+                            principalController.setUsuario(usuario);
                         }
 
-                        //Cierra la ventana de login
+                        // Cierra la ventana de login
                         Stage ventanaLogin = (Stage) ((Node) event.getSource()).getScene().getWindow();
                         ventanaLogin.close();
 

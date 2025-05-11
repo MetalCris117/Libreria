@@ -27,7 +27,9 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import uacm.conexion.LibroDAO;
+import uacm.conexion.Session;
 import uacm.modelo.Libro;
+import uacm.modelo.Usuario;
 
 /**
  * FXML Controller class
@@ -80,7 +82,7 @@ public class Vista_principalController implements Initializable {
     @FXML
     private TextField text_Busqueda;
 
-    private String usuarioActual = null;
+    private Usuario usuarioActual = null;
 
     /**
      * Initializes the controller class.
@@ -150,6 +152,7 @@ public class Vista_principalController implements Initializable {
             stage.show();
         } else {
             // Cierra sesión
+            Session.cerrarSesion();
             usuarioActual = null;
             lb_inicio.setText("Inicio");
             btt_iniSecion.setText("Iniciar Sesión");
@@ -174,10 +177,11 @@ public class Vista_principalController implements Initializable {
         System.out.println("Busqueda realizada: "+text);//Aquí se agrega la busqueda
     }
 
-    public void setUsuario(String nombre) {
-        usuarioActual = nombre;
-        lb_inicio.setText(nombre);
+    public void setUsuario(Usuario usuario) {
+        usuarioActual = usuario;
+        lb_inicio.setText(usuario.getNombre());
         btt_iniSecion.setText("Cerrar Sesión");
-    }    
+        Session.iniciarSesion(usuario); // Guardamos la sesión en la clase Session
+    }  
 
 }

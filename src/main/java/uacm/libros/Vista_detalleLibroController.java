@@ -12,11 +12,15 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
+import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import uacm.modelo.Libro;
 
 public class Vista_detalleLibroController {
+    @FXML
+    private Button bt_inicioSesion;
+
     @FXML
     private Label lb_detalle;
 
@@ -58,11 +62,20 @@ public class Vista_detalleLibroController {
 
     private Libro libro;
 
+    private int cantidadSeleccionada = 0;
+
     /**
      * Initializes the controller class.
      */
     public void initialize() {
-        //sp_unidades.increment();
+        // Actualiza la cantidad seleccionada cuando el valor del Spinner cambia
+        sp_unidades.valueProperty().addListener((obs, oldValue, newValue) -> {
+            cantidadSeleccionada = (int) newValue;
+            System.out.println("Cantidad seleccionada: " + cantidadSeleccionada);
+        });
+        // Inicializa el Spinner con un rango de 0 a 100 y valor inicial 0
+        SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 100, 0);
+        sp_unidades.setValueFactory(valueFactory);
     }
 
     public void setDatos(Libro libro) {

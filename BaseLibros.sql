@@ -20,11 +20,12 @@ DROP TABLE IF EXISTS Carrito;
 
 CREATE TABLE Carrito(
     Id INT IDENTITY(1,1),
-    libro_id INT,
-	fecha_agregado DATETIME DEFAULT GETDATE()
-	CONSTRAINT PK_Id_Carrito PRIMARY KEY (Id),--restricciones
-	CONSTRAINT FK_Id_Carrito FOREIGN KEY(libro_id) REFERENCES Usuarios(Id),
-	CONSTRAINT UQ_Id_Carrito UNIQUE (Id)
+    libro_id INT NOT NULL,
+    usuario_id INT NOT NULL,
+    fecha_agregado DATETIME DEFAULT GETDATE(),
+    CONSTRAINT PK_Id_Carrito PRIMARY KEY (Id),
+    CONSTRAINT FK_Libro_Carrito FOREIGN KEY (libro_id) REFERENCES Libreria(Id), 
+    CONSTRAINT FK_Usuario_Carrito FOREIGN KEY (usuario_id) REFERENCES Usuarios(Id)
 );
 
 SELECT * FROM Carrito

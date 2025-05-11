@@ -11,7 +11,8 @@ public class Libro {
     private int existecias;
     private byte[] portada;
 
-    public Libro(String titulo, String autor, int anioP, String editorial, String genero, float presio, int exist, byte[] portada) {
+    public Libro(int id, String titulo, String autor, int anioP, String editorial, String genero, float presio, int exist, byte[] portada) {
+        this.id_libro = id;
         this.titulo = titulo;
         this.autor = autor;
         this.anioPublicacion = anioP;
